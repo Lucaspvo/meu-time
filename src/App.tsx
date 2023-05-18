@@ -1,8 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useAuth } from './components/auth';
+import { Navigate, Outlet } from 'react-router';
 
 function App() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Navigate to={'/login'} replace={true} />;
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +27,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Outlet />
     </div>
   );
 }
