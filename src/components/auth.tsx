@@ -16,7 +16,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [credential, setCredential] = React.useState<string>('');
 
   function handleLogin(credential: string) {
-    console.debug('aqui?', credential);
     setCredential(credential);
   }
 
