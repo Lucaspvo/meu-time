@@ -5,9 +5,11 @@ import { useAuth } from './components/auth';
 import { Navigate, Outlet } from 'react-router';
 
 function App() {
-  const { user } = useAuth();
+  const { credential } = useAuth();
+  console.debug('veio aqui?');
+  console.debug(credential);
 
-  if (!user) {
+  if (!credential) {
     return <Navigate to={'/login'} replace={true} />;
   }
 
