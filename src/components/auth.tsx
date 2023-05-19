@@ -1,39 +1,33 @@
 import React, { createContext, useContext } from 'react';
 
-// interface User {
-//   id: number;
-//   name: string;
-//   email: string;
-// }
-
 interface AuthContextProps {
-  user: string | null;
-  login: (email: string, password: string) => void;
-  logout: () => void;
+    credential: string | null;
+    login: (credential: string) => void;
+    logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({
-  user: null,
-  login: () => {},
-  logout: () => {}
+    credential: null,
+    login: () => {},
+    logout: () => {},
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = React.useState<string | null>('olamundo');
+  const [credential, setCredential] = React.useState<string>('');
 
-  function handleLogin(email: string, password: string) {
-    // const user = { id: 1, name: 'John Doe', email: email };
-    setUser('olamundo');
+  function handleLogin(credential: string) {
+    console.debug('aqui?', credential);
+    setCredential(credential);
   }
 
   function handleLogout() {
-    setUser(null);
+    setCredential('');
   }
 
   const authContextValue: AuthContextProps = {
-    user,
+    credential,
     login: handleLogin,
-    logout: handleLogout
+    logout: handleLogout,
   };
 
   return (
